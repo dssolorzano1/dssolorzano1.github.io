@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Formulario de Login</title>
+    <meta name="viewport" content="width=device-width, user-scaleble=no,
+    initial-scale=1, maximum-scale=1,minimum-scale=1">
+    <link rel="stylesheet" href="Recursos/MisEstilos.css">
+  </head>
+  <body>
+    <form class="" action="" method="post" name="FormContacto" target="_self" onsubmit="validar()" >
+      <h2>Contacto</h2>
+      <p>Correo Electronico</p>
+      <input type="text" name="txtEmail" id="email1" placeholder="&#9993; usuario@mail.com">
+      <p>Fecha de Nacimiento</p>
+      <input type="date" name="txtFecha">
+      <p>Teléfono</p>
+      <input type="text" name="txtTelefono" id="tel1" placeholder="&#9742; Telefono">
+      <input type="submit" name="BtnEnviar" id="Enviar1" value="Enviar" onclick="desactivar()">
+    </form>
+     <script type="text/javascript">
+      var valor,estado = true , expresion, cadena ="", contador=0;
+
+      function validar(){
+
+        expresion = /^[a-z][\w.-]+@\w[\w.-]+\.[\w.-]*[a-z][a-z]$/i;
+        valor = document.getElementById("email1").value;
+        if (!expresion.test(valor)){
+            estado = false;
+            document.getElementById("email1").value="";
+            cadena+="Email ";
+        }
+
+        valor = document.getElementById("tel1").value;
+        if(!((valor.length == 10) && (!isNaN(valor)))){
+            estado = false;
+            document.getElementById("tel1").value="";
+            if(cadena == ""){
+              cadena+="Telefono ";
+            }else{
+              cadena+="y Telefono ";
+            }
+        }
+
+        if(!estado){
+          alert("Error validación - corrija "+cadena);
+        }
+
+        function desactivar(){
+          valor= document.getElementById("Enviar1");
+          valor.type = "button";
+          valor.disabled = true;
+          valor.value = "Enviando Datos ......"
+          valor.onchange = "this.form.submit()";
+        }
+      }
+    </script>
+  </body>
+</html>
